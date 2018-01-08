@@ -1,0 +1,11 @@
+Workflow (simplified):
+
+- Fork main org/repo
+- clone down master
+- create branch for changes
+- 'checkout' given branch
+- make changes
+- git rebase to incorporate any changes to upstream master to fork
+- git add/commit/push branch to fork
+- pull request
+
