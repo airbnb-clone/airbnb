@@ -1,0 +1,98 @@
+Workflow (simplified):
+
+1. git checkout master
+2. git pull --rebase upstream master
+3. git checkout -b feature-branch
+4. edit/git add/git commit
+5. git pull --rebase upstream master
+6. git push origin feature-branch
+7. Submit PR
+
+---- PR Merge Successful ----
+
+8. Make more commits to feature-branch
+9. git push origin feature-branch
+
+---- PR Merge Unsuccessful ----
+
+8. git checkout master
+9. git pull --rebase upstream master
+
+
+
+Workflow (in-depth):
+
+-------------------------- PART ONE --------------------------
+
+[  ] Create an organization for your team
+	-->[  ] Have each member join that organization
+
+[  ] Create a repo for your project
+	-->[  ] Have each member fork the org's repo to their own github accounts
+
+
+[  ] Clone down your fork 
+	--> git clone https://github.com/YOUR_USERNAME/airbnb
+
+[  ] Add the organization's version of the repo as an upstream remote
+	--> git remote add upstream https://github.com/airbnb_clone/airbnb
+
+-------------------------- PART TWO --------------------------
+> Making and submitting changes
+
+[  ] Before beginning, make sure you're on your local master branch
+	--> get checkout master
+
+[  ] Everytime you begin making a new set of changes, make sure your local master branch is in-sync with the org's master branch 
+	--> git pull --rebase upstream master
+
+[  ] Leave local master as simply an up-to-date copy of your organization's master. If you plan on making changes, create a branch specific to the changes you wish to make
+
+[  ] Create your feature branch by doing 
+	--> git checkout -b feature-branch
+
+[  ] Commit frequently
+
+[  ] Before you submit changes for review:
+	--> git pull --rebase upstream master
+
+[  ] With all changes incorporated, push up to origin
+	--> git push origin feature-branch 
+
+[  ] Submit a pull request
+	--> [  ] Have someone from your team review your code and decide whether or not to merge to the org's master
+
+
+-------------------------- PULL REQUEST --------------------------
+
+****** If the pull request is successful ******
+
+
+
+[  ] Clean up your feature branches, as you will no longer need them
+
+[  ] When PR is merged, click the Delete branch button
+
+[  ] Remove the branch from your local workstation
+	--> get checkout master
+	--> git branch -d feature-branch
+
+
+
+****** If the pull request is unsuccessful ******
+
+[  ] Return to your local repo's feature branch and perform additional work
+
+[  ] Make your new commit(s) to the same feature-branch
+
+[  ] Push changes on the feature branch to the origin's feature branch
+	--> git push origin feature-branch
+
+
+
+
+
+
+
+
+
