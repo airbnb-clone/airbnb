@@ -49,6 +49,8 @@ CREATE TABLE `bookings` (
   PRIMARY KEY (`id`)
 );
 
+ALTER TABLE 'bookings' ADD CONSTRAINT id_date UNIQUE(listing_id, dateRented);
+
 -- ---
 -- Table 'users'
 -- 
