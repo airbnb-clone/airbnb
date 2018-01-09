@@ -10,13 +10,17 @@ Workflow (simplified):
 
 ---- PR Merge Successful ----
 
-8. Make more commits to feature-branch
-9. git push origin feature-branch
+8. git checkout master
+9. git pull --rebase upstream master
+10. Remove the branch from your local workstation
+	--> get checkout master
+	--> git branch -d feature-branch
 
 ---- PR Merge Unsuccessful ----
 
-8. git checkout master
+8. Make more commits to feature-branch
 9. git pull --rebase upstream master
+10. git push origin feature-branch
 
 
 
