@@ -1,0 +1,73 @@
+> Your roadmap document tracks the features and tech debt that you intend to tackle, at a high level.
+
+-------------------------- MUST-HAVE --------------------------
+
+
+As a visitor:
+
+*** Search Component ***
+
+	[  ] Search for available listings by (city, address)
+
+	[  ] Filter search results by criteria
+
+*** Listings Component ***
+
+	[  ] See listing entries
+
+*** ListingEntry Component ***
+
+	[  ] See listing details 
+
+	[  ] Book listing by specific dates
+
+*** Bookings Component ***
+
+	[  ] See booking entries
+
+*** BookingEntry Component ***
+
+	[  ] See my previous bookings
+
+	[  ] See my upcoming bookings
+
+	[  ] Cancel a booking
+
+
+-------------------------- NICE-TO-HAVE --------------------------
+
+As a user:
+
+*** Profile Component ***
+
+	[  ] See my profile
+
+	[  ] Bio
+
+*** Wishlist Component ***
+
+	[  ] Save listings to my wishlist
+
+*** Experience Component ***
+
+	[  ] API call to yelp, groupon, etc by city
+
+*** Messages Component ***
+
+	[  ] See MessageEntry components
+
+*** MessageEntry Component ***
+
+	[  ] Message host of a listing
+	
+	[  ] See my messages
+
+Technologies:
+
+[  ] Web Socket
+
+[  ] Redux 
+
+
+
+
