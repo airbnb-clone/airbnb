@@ -12,7 +12,7 @@ app.get('/', function(req, res){
 })
 
 app.listen(PORT, function() {
-	console.log('listening on 1234')
+	console.log(`listening on ${PORT}`)
 })
 
 
