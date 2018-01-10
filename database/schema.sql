@@ -39,17 +39,30 @@ CREATE TABLE `listings` (
 -- 
 -- ---
 
-DROP TABLE IF EXISTS `bookings`;
+-- DROP TABLE IF EXISTS `bookings`;
 		
+-- CREATE TABLE `bookings` (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT,
+--   `listing_id` INTEGER NOT NULL,
+--   `user_id` INTEGER NOT NULL,
+--   `dateRented` INTEGER NULL DEFAULT NULL, 
+--   PRIMARY KEY (`id`)
+-- );
+
+-- ALTER TABLE 'bookings' ADD CONSTRAINT id_date UNIQUE(listing_id, dateRented);
+
+
+DROP TABLE IF EXISTS `bookings`;
+    
 CREATE TABLE `bookings` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `listing_id` INTEGER NOT NULL,
   `user_id` INTEGER NOT NULL,
-  `date` INTEGER NULL DEFAULT NULL,
+  `dateRented` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
-ALTER TABLE 'bookings' ADD CONSTRAINT id_date UNIQUE(listing_id, dateRented);
+ALTER TABLE `bookings` ADD CONSTRAINT id_date UNIQUE(listing_id, dateRented);
 
 -- ---
 -- Table 'users'
