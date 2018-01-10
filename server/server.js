@@ -12,5 +12,6 @@ const PORT = process.env.PORT || 1234;
 
 app
   .use(express.static(path.join(__dirname, '/../client/dist/')))
+  .use(bodyParser.json())
   .get('/', (req, res) => console.log('serving ' + req.method))
   .listen(PORT, '0.0.0.0', () => console.log(`listening on ${PORT}`))
