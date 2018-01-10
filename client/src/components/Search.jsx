@@ -1,29 +1,55 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: null
+      value: ''
     }
-    this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
-  onChange(e) {
-    this.setState({value: e.target.value});
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
-  onSubmit() {
-    
+  handleKeyUp(event) {
+    if (event.keyCode === 13) {
+      this.props.search(this.state.value);
+      this.setState({value: ''});
+    }
   }
 
   render() {
     return (
-      <div>
-        <input type="text" placeholder="Anywhere" onChange={(e) => this.onChange(e)} />
-      </div>
+      <form onKeyUp={this.handleKeyUp}>
+        <label>
+          <input type="submit" 
+                 value={this.state.value} 
+                 onChange={this.handleChange} />
+        </label>
+      </form>
     );
   }
 }
+
+/*
+
+var Search = (props) => (
+  <div className="search-bar form-inline">
+    <input className="form-control" type="text" id="search" onKeyPress={(event) => {
+      if (event.key === 'Enter') {
+        props.onKeyPress($('#search').val()); 
+      }
+    }}/>
+    <button className="btn hidden-sm-down" onClick={() => props.onClick($('#search').val())}>
+      <span className="glyphicon glyphicon-search"></span>
+    </button>
+  </div> 
+);
+
+
+*/
+

@@ -34,22 +34,3 @@ export default class Search extends React.Component {
     );
   }
 }
-
-/*
-
-var Search = (props) => (
-  <div className="search-bar form-inline">
-    <input className="form-control" type="text" id="search" onKeyPress={(event) => {
-      if (event.key === 'Enter') {
-        props.onKeyPress($('#search').val()); 
-      }
-    }}/>
-    <button className="btn hidden-sm-down" onClick={() => props.onClick($('#search').val())}>
-      <span className="glyphicon glyphicon-search"></span>
-    </button>
-  </div> 
-);
-
-
-*/
-
