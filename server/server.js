@@ -5,11 +5,12 @@ const express = require('express');
 const app = express();
 const https = require('https');
 https.createServer(app);
+const PORT = process.env.PORT || 1234;
 
 app
   .use(express.static(path.join(__dirname, '/../client/dist/')))
   .get('/', (req, res) => console.log('serving ' + req.method))
-  .listen((process.env.PORT || 1234), '0.0.0.0', () => console.log(`listening on ${PORT}`))
+  .listen(PORT, '0.0.0.0', () => console.log(`listening on ${PORT}`))
 
 
 
