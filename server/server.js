@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 // const db = require('/../database');
-const PORT = 3000;
+const PORT = process.env.PORT || 1234;
 app = express();
 
 app.use(express.static(path.join(__dirname, '/../client/dist/')));
@@ -14,6 +14,8 @@ app.get('/', function(req, res){
 app.listen(PORT, function() {
 	console.log('listening on 3000')
 })
+
+export PORT=1234;
 
 
 
