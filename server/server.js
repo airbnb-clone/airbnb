@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 // const db = require('/../database');
-const PORT = 3000;
+const PORT = 8080;
 app = express();
 
 app.use(express.static(path.join(__dirname, '/../client/dist/')));
