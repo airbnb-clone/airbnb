@@ -12,11 +12,8 @@ app.get('/', function(req, res){
 })
 
 app.listen(PORT, function() {
-	console.log('listening on 3000')
+	console.log(`listening on ${PORT}`)
 })
-
-export PORT=1234;
-
 
 
 
