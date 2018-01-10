@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 // const db = require('/../database');
 const PORT = process.env.PORT || 1234;
-app = express();
+const app = express();
+
+
 
 app.use(express.static(path.join(__dirname, '/../client/dist/')));
 
@@ -11,7 +13,7 @@ app.get('/', function(req, res){
 	console.log('serving ' + req.method)
 })
 
-app.listen(PORT, function() {
+app.listen(PORT, 0.0.0.0, function() {
 	console.log(`listening on ${PORT}`)
 })
 
