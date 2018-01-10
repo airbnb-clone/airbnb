@@ -1,21 +1,15 @@
-const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const https = require('https');
 // const db = require('/../database');
-const PORT = process.env.PORT || 1234;
+const express = require('express');
 const app = express();
-
+const https = require('https');
 https.createServer(app);
 
-app.use(express.static(path.join(__dirname, '/../client/dist/')));
-app.get('/', function(req, res){
-	console.log('serving ' + req.method)
-})
-
-app.listen(PORT, '0.0.0.0', function() {
-	console.log(`listening on ${PORT}`)
-})
+app
+  .use(express.static(path.join(__dirname, '/../client/dist/')))
+  .get('/', (req, res) => console.log('serving ' + req.method))
+  .listen((process.env.PORT || 1234), '0.0.0.0', () => console.log(`listening on ${PORT}`))
 
 
 
