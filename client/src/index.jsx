@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Search from './components/Search.jsx';
+import Listings from './components/listings.jsx'
 import axios from 'axios';
 
  export default class App extends React.Component {
@@ -29,6 +30,7 @@ import axios from 'axios';
     return (
       <div>
         <Search search={this.search} />
+        <Listings />
       </div>
     );
   }
