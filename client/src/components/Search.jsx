@@ -8,28 +8,27 @@ export default class Search extends React.Component {
       value: ''
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
-  handleKeyUp(event) {
-    if (event.keyCode === 13) {
-      this.props.search(this.state.value);
-      this.setState({value: ''});
-    }
+  handleClick() {
+    event.preventDefault();
+    console.log('ive been searched')
+    this.props.search(this.state.value);
+    this.setState({value: ''});
   }
 
   render() {
     return (
-      <form onKeyUp={this.handleKeyUp}>
+      <form>
         <label>
-          <input type="submit" 
-                 value={this.state.value} 
-                 onChange={this.handleChange} />
+          <input type="text" placeholder="Anywhere" onChange={this.handleChange} />
         </label>
+        <input type="button" value="Submit" onClick={this.handleClick}/>
       </form>
     );
   }
