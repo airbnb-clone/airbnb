@@ -58,8 +58,11 @@ export default class BookingWindow extends React.Component {
 						</select>
 					</h2>
 				</div>
-
+					<div>
+						{this.state.totalPrice ? <h2> Total price: {this.state.totalPrice}</h2> : null}
+					</div>
 					<button className="dateSelectionSubmit" onClick={()=>{
+						var totalPrice;
 						var startDate = $('#startDate').val(); // find react way to do this
 						var endDate = $('#endDate').val();
 						var dates = [];
@@ -70,6 +73,9 @@ export default class BookingWindow extends React.Component {
 							i < 10 ? i = `0${i}` : i = i.toString();
 							var formattedDate = `2017-${month}-${i} 00:00:00`
 							dates.push(formattedDate)
+							var totalPrice = ((i - 1) * this.state.price);
+							this.setState({totalPrice: totalPrice})
+							console.log(totalPrice)
 						}
 						this.checkDates(dates)
 					}}> Book it! </button>
