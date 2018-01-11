@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const getAllListings = require('./../database/queries/getAllListings.js');
+const getListingsByCity = require('./../database/queries/getListingsByCity.js');
 const checkAvailability = require('./../database/queries/checkAvailability.js');
-const saveReservation = require('./../database/queries/saveReservation.js')
+const saveReservation = require('./../database/queries/saveReservation.js');
+
 
 router.get('*/listings-bryce', (req, res) => getListingsByCity(req.query.city, results => res.send(results)));
 
