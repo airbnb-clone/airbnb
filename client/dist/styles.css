@@ -1,0 +1,25 @@
+/*.block {
+  display: inline-block
+}*/
+
+.button {
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+
+}
+
+.listingImage {
+  width: 100px;
+}
+
+.listingDiv {
+  display: inline-block;
+  margin: 0 10px;
+
+}
+
+.listingDiv h5 {
+  margin-top: 0px;
+}

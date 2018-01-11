@@ -23,9 +23,15 @@ router.post('*/bookings-james', (req, res) => {
 			})
   })
 
+router.get('*/listings-ted', (req, res) => getAllListings(results => {
+  console.log(results)
+  res.json(results);
+}
+));
+
+
 
 
 
 
 module.exports = router;
-  
