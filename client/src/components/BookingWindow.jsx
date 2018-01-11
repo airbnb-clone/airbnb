@@ -77,8 +77,6 @@ export default class BookingWindow extends React.Component {
 					</div>
 					<button className="dateSelectionSubmit" onClick={()=>{
 						var totalPrice;
-						// var startDate = $('#startDate').val(); // find react way to do this
-						// var endDate = $('#endDate').val();
 						var dates = [];
 						var dayStart = parseInt(startDate.split('-')[2]);
 						var dayEnd = parseInt(endDate.split('-')[2])
