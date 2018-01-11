@@ -23,7 +23,7 @@ router.post('*/bookings-james', (req, res) => {
 			})
   })
 
-router.get('/listings', (req, res) => getAllListings(results => {
+router.get('/listings-ted', (req, res) => getAllListings(results => {
   console.log(results)
   res.json(results);
 }

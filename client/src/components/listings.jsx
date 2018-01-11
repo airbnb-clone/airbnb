@@ -13,7 +13,7 @@ class Listings extends React.Component {
 
   componentDidMount() {
     var context = this;
-    axios.get('/listings')
+    axios.get('/listings-ted')
     .then(response => {
       this.setState({list: response.data});
       context.forceUpdate();
