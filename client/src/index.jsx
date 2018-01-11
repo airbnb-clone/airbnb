@@ -21,7 +21,7 @@ import axios from 'axios';
         city: city
       }
     })
-    .then(response => console.log(response.data))
+    .then(response => this.setState({listings: response.data}))
     .catch(error => console.log(error))
   }
 
