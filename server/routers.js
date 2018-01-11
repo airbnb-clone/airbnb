@@ -4,7 +4,7 @@ const router = express.Router();
 const getAllListings = require('./../database/queries/getAllListings.js');
 const checkAvailability = require('./../database/queries/checkAvailability.js')
 
-router.get('*/listings-bryce', (req, res) => getAllListings(results => console.log(results)));
+router.get('*/listings-bryce', (req, res) => getListingsByCity(req.query.city, results => res.send(results)));
 
 router.post('*/bookings-james', (req, res) => {
 			var dates = req.body.data;
