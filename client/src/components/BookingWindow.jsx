@@ -11,8 +11,9 @@ export default class BookingWindow extends React.Component {
 		this.state = {
 			price: this.props.price,
 			listingId: this.props.listingId,
-			userId: this.props.userId,
-			rating: Array(parseInt(this.props.rating)).fill("*"),
+			userId: 1, // only one user for demo - hardcoded
+			// rating: Array(parseInt(this.props.rating)).fill("*"), - plan to implement later, need to update schema
+			rating: 3,
 			startDate: undefined,
 			endDate: undefined,
 			maxGuests: Array(parseInt(this.props.maxGuests)).fill('1')
