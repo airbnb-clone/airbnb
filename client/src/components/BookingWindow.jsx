@@ -17,21 +17,16 @@ export default class BookingWindow extends React.Component {
 			endDate: undefined,
 			maxGuests: Array(parseInt(this.props.maxGuests)).fill('1')
 		}
-		this.onChange = this.onChange.bind(this);
+	
 		this.checkDates = this.checkDates.bind(this);
-	}
-
-	onChange(date) {
-		this.setState({
-			startDate: date
-		})
 	}
 
 	checkDates(dates){
 		var app = this;
 		axios.post('/bookings-james', {
 			data: dates,
-			listing: app.state.listingId
+			listing: app.state.listingId,
+			user: app.state.userId
 		}).then(function(response){
 			console.log(response);
 		}).catch(function(error){
@@ -65,7 +60,7 @@ export default class BookingWindow extends React.Component {
 				</div>
 
 					<button className="dateSelectionSubmit" onClick={()=>{
-						var startDate = $('#startDate').val();
+						var startDate = $('#startDate').val(); // find react way to do this
 						var endDate = $('#endDate').val();
 						var dates = [];
 						var dayStart = parseInt(startDate.split('-')[2]);
@@ -77,7 +72,6 @@ export default class BookingWindow extends React.Component {
 							dates.push(formattedDate)
 						}
 						this.checkDates(dates)
-						 // this will query the DB with the start + end dates and listing + user IDs
 					}}> Book it! </button>
 				</div>
 			</div>

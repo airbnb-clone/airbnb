@@ -6,7 +6,7 @@ const checkAvailability = (listing, dates, callback) => {
 
 
 	connection.query(queryString, (err, results) => {
-		var availability;
+		var availability = true;
 		if (err){
 			console.log(err)
 		} else {
@@ -24,7 +24,6 @@ const checkAvailability = (listing, dates, callback) => {
 					}
 				})
 			})
-			availability = true;
 			callback(availability);
 		}
 	})
