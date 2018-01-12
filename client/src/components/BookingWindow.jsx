@@ -13,10 +13,11 @@ export default class BookingWindow extends React.Component {
       listingId: this.props.listingId,
       userId: 1, // only one user for demo - hardcoded
       // rating: Array(parseInt(this.props.rating)).fill("*"), - plan to implement later, need to update schema
-      rating: Array(3).fill('8'),
+      rating: Array(3).fill('*'),
       startDate: undefined,
       endDate: undefined,
-      maxGuests: Array(parseInt(this.props.maxGuests)).fill('1')
+      maxGuests: Array(parseInt(this.props.maxGuests)).fill('1'),
+      totalPrice: undefined
     };
     this.setStartDate = this.setStartDate.bind(this);
     this.setEndDate = this.setEndDate.bind(this);
@@ -73,14 +74,15 @@ export default class BookingWindow extends React.Component {
             </h2>
           </div>
           <div>
-            {this.state.totalPrice ? <h2> Total price: {this.state.totalPrice}</h2> : null}
+            {this.state.totalPrice ? <h2> Total price: ${this.state.totalPrice}</h2> : null}
           </div>
           <button className="dateSelectionSubmit" onClick={()=>{
             var totalPrice;
             var dates = [];
-            var dayStart = parseInt(startDate.split('-')[2]);
-            var dayEnd = parseInt(endDate.split('-')[2]);
-            var month = startDate.split('-')[1];
+            var dayStart = parseInt(this.state.startDate.toString().split('-')[2]);
+            var dayEnd = parseInt(this.state.endDate.toString().split('-')[2]);
+            var month = this.state.startDate.toString().split('-')[1];
+  
             for (var i = dayStart; i <= dayEnd; i++) { 
               i < 10 ? i = `0${i}` : i = i.toString();
               var formattedDate = `2017-${month}-${i} 00:00:00`;
