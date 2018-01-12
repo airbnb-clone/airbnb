@@ -8,15 +8,16 @@ class ListingEntry extends React.Component {
   }
 
   render() {
+    
     return (
 
         <div className="listingDiv">
         <img className="listingImage" src={this.props.item.pic_url} />
         <h5> {this.props.item.name}</h5>
-        <Link to="/listings/5"> <button className="button">See More </button> </Link>
+        <Link to={"/listings/" + this.props.item.id}> <button className="button">See More </button> </Link>
 
       </div>
-  
+
     )
   }
 }

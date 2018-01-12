@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 // import BookingWindow from './BookingWindow.jsx';
 
 class ListingEntryDetail extends React.Component {
@@ -26,7 +27,9 @@ class ListingEntryDetail extends React.Component {
   }
 
   componentWillMount() {
-    this.getAllDetails(this.state.listingId);
+    console.log('ROUTES BREH', this.props.routes);
+    console.log('PARAMS BREH', this.props.match.params.id);
+    this.getAllDetails(this.props.match.params.id);
   }
 
   getAllDetails(listingId) {
@@ -67,7 +70,7 @@ class ListingEntryDetail extends React.Component {
     let address = `${this.state.listing.street_address}, ${this.state.listing.city} ${this.state.listing.zip_code}`;
     this.setState({address: address});
     // invoke getLatLong after getting address set
-    callback();   
+    callback();
   }
 
   // make GET request to server to geocode address
@@ -88,18 +91,21 @@ class ListingEntryDetail extends React.Component {
     }
   }
 
-  
+
   render() {
     return (
       <div>
-        <div className="ListingName">
-          {this.state.name}
-        </div>
-        <div className="ListingDescription">
-          {this.state.description}
-        </div>
+        <Link to={"/"}> Go back </Link>
+
+
+          <h3> {this.state.name} </h3>
+          <img src={this.state.pic_url} />
+
+
+          <p>{this.state.description}</p>
+
         {
-        // intend to render BookingWindow component 
+        // intend to render BookingWindow component
         //<BookingWindow maxGuests={this.state.fakeListing.num_guests} price={this.state.fakeListing.nightly_price} listingId={this.state.fakeListing.listingId} />
         }
       </div>
