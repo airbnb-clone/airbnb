@@ -15,7 +15,6 @@ export default class BookingWindow extends React.Component {
       modalOpen: false,
       listingId: this.props.listingId,
       userId: 1, // only one user for demo - hardcoded
-      // rating: Array(parseInt(this.props.rating)).fill("*"), - plan to implement later, need to update schema
       rating: Array(this.props.rating || 3).fill('*'),
       startDate: undefined,
       endDate: undefined,
@@ -37,7 +36,6 @@ export default class BookingWindow extends React.Component {
       listing: app.state.listingId,
       user: app.state.userId
     }).then(function(response) {
-      console.log(response);
       if (response.data === 'failure') {
         app.state.resultMessage = 'Sorry, this property is not available at that time.';
         app.setState({
@@ -127,7 +125,6 @@ export default class BookingWindow extends React.Component {
               }
               this.checkDates(dates);
             } else {
-              console.log('no dates')
               this.state.resultMessage = 'Please select a check-in date that\'s earlier than check-out date.';
               this.setState({
                 modalOpen: true
@@ -139,15 +136,7 @@ export default class BookingWindow extends React.Component {
         <Modal open={modalOpen} onClose={this.onCloseModal} little>
           <p> {this.state.resultMessage} </p>
         </Modal>
-
-
       </div>
     );
   }
 }
-
-
-
-
-
-
