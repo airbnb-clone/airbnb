@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './components/Search.jsx';
-import Listings from './components/listings.jsx'
+import Search from './components/Search.jsx'
+import UserComponent from './components/UserComponent.jsx'
 import axios from 'axios';
 
  export default class App extends React.Component {
@@ -10,27 +10,27 @@ import axios from 'axios';
 
     this.state = {
       listings: [],
-      bookings: []
+      bookings: [],
+      viewBooking: false
     }
-
     this.search = this.search.bind(this);
   }
 
-  search(city) {
-    axios.get('/listings-bryce', {
-      params: {
-        city: city
-      }
+  search() {
+    
+  }
+  viewBookings(){
+    this.setState({
+      viewBookings: true
     })
-    .then(response => this.setState({listings: response.data}))
-    .catch(error => console.log(error))
   }
 
   render() {
     return (
       <div>
         <Search search={this.search} />
-        <Listings />
+        <button onClick={() => this.viewBookings()}>Bookings</button>
+        {this.state.viewBookings ? <UserComponent currentBookings={this.currentBookings} pastBookings={this.pastBookings} /> : ''}
       </div>
     );
   }
