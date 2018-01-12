@@ -36,7 +36,6 @@ export default class BookingWindow extends React.Component {
       listing: app.state.listingId,
       user: app.state.userId
     }).then(function(response) {
-      console.log(response);
       if (response.data === 'failure') {
         app.state.resultMessage = 'Sorry, this property is not available at that time.';
         app.setState({
@@ -137,8 +136,6 @@ export default class BookingWindow extends React.Component {
         <Modal open={modalOpen} onClose={this.onCloseModal} little>
           <p> {this.state.resultMessage} </p>
         </Modal>
-
-
       </div>
     );
   }
