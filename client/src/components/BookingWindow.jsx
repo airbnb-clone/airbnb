@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
+import moment from 'moment';
 
 
 export default class BookingWindow extends React.Component {
@@ -11,11 +12,11 @@ export default class BookingWindow extends React.Component {
     super(props);
     this.state = {
       price: this.props.price,
-      open: false,
+      modalOpen: false,
       listingId: this.props.listingId,
       userId: 1, // only one user for demo - hardcoded
       // rating: Array(parseInt(this.props.rating)).fill("*"), - plan to implement later, need to update schema
-      rating: Array(3).fill('*'),
+      rating: Array(this.props.rating || 3).fill('*'),
       startDate: undefined,
       endDate: undefined,
       maxGuests: Array(parseInt(this.props.maxGuests)).fill('1'),
@@ -40,13 +41,13 @@ export default class BookingWindow extends React.Component {
       if (response.data === 'failure') {
         app.state.resultMessage = 'Sorry, this property is not available at that time.';
         app.setState({
-          open: true
+          modalOpen: true
         });
       }
       if (response.data === 'success') {
-        app.state.resultMessage = `Your reservation is booked! \n ${app.state.startDate} through ${app.state.endDate}`; // bring in moment to make these human readable
+        app.state.resultMessage = `Your reservation is booked! ${moment(app.state.startDate).format('dddd, MMMM Do YYYY')} - ${moment(app.state.endDate).format('dddd, MMMM Do YYYY')}`; // bring in moment to make these human readable
         app.setState({
-          open: true
+          modalOpen: true
         });
       }
     }).catch(function(error) {
@@ -68,18 +69,22 @@ export default class BookingWindow extends React.Component {
   
   onOpenModal() {
     this.setState({
-      open: true
+      modalOpen: true
     });
   }
 
   onCloseModal() {
     this.setState({
-      open: false
+      modalOpen: false
     });
   }
 
+  isValidDateChoice(endDateUnix) {
+    return (this.state.startDate === undefined || endDateUnix < Date.parse(this.state.startDate)) ? false : true;
+  }
+
   render() {
-    const {open} = this.state;
+    const {modalOpen} = this.state;
     return (
     
       <div>
@@ -106,28 +111,43 @@ export default class BookingWindow extends React.Component {
             {this.state.totalPrice ? <h2> Total price: ${this.state.totalPrice}</h2> : null}
           </div>
           <button className="dateSelectionSubmit" onClick={()=>{
-            var totalPrice;
-            var dates = [];
-            var dayStart = parseInt(this.state.startDate.toString().split('-')[2]);
-            var dayEnd = parseInt(this.state.endDate.toString().split('-')[2]);
-            var month = this.state.startDate.toString().split('-')[1];
-  
-            for (var i = dayStart; i <= dayEnd; i++) { 
-              i < 10 ? i = `0${i}` : i = i.toString();
-              var formattedDate = `2017-${month}-${i} 00:00:00`;
-              dates.push(formattedDate);
-              var totalPrice = ((Math.abs(dayEnd - dayStart)) * this.state.price);
-              this.setState({totalPrice: totalPrice});
+            if (this.state.startDate && this.state.endDate && this.isValidDateChoice(Date.parse(this.state.endDate))) {
+              var totalPrice;
+              var dates = [];
+              var dayStart = parseInt(this.state.startDate.toString().split('-')[2]);
+              var dayEnd = parseInt(this.state.endDate.toString().split('-')[2]);
+              var month = this.state.startDate.toString().split('-')[1];
+    
+              for (var i = dayStart; i <= dayEnd; i++) { 
+                i < 10 ? i = `0${i}` : i = i.toString();
+                var formattedDate = `2017-${month}-${i} 00:00:00`;
+                dates.push(formattedDate);
+                var totalPrice = ((Math.abs(dayEnd - dayStart)) * this.state.price);
+                this.setState({totalPrice: totalPrice});
+              }
+              this.checkDates(dates);
+            } else {
+              console.log('no dates')
+              this.state.resultMessage = 'Please select a check-in date that\'s earlier than check-out date.';
+              this.setState({
+                modalOpen: true
+              });
             }
-            this.checkDates(dates);
           }}> Book it! </button>
         </div>
-        <Modal open={open} onClose={this.onCloseModal} little>
+
+        <Modal open={modalOpen} onClose={this.onCloseModal} little>
           <p> {this.state.resultMessage} </p>
         </Modal>
+
+
       </div>
     );
   }
 }
+
+
+
+
 
 
