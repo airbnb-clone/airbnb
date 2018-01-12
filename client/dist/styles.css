@@ -1,0 +1,31 @@
+/*.block {
+  display: inline-block
+}*/
+
+.button {
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+
+}
+
+.containerBooking {
+	border: solid grey 2px;
+	border-radius: 25px 0px 25px 0px;
+	padding: 5px;
+}
+
+.listingImage {
+  width: 300px;
+}
+
+.listingDiv {
+  display: inline-block;
+  margin: 0 10px;
+
+}
+
+.listingDiv h5 {
+  margin-top: 0px;
+}

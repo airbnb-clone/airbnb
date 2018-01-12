@@ -31,6 +31,7 @@ CREATE TABLE `listings` (
   `cancellation_policy` VARCHAR(255) NOT NULL,
   `nightly_price` INTEGER NOT NULL,
   `pic_url` VARCHAR(255) NULL DEFAULT NULL,
+  `rating` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
 
