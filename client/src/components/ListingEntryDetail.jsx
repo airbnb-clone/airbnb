@@ -37,13 +37,30 @@ class ListingEntryDetail extends React.Component {
       // TO DO: after React router implementation, params: {listingId: match.params.listingId}
     .then((response) => {
       console.log(response.data[0]);
-      context.setState({listing: response.data[0]});
+      context.setState({
+        listing: response.data[0],
+        id: response.data[0].id,
+        num_guests: response.data[0].num_guests,
+        bedrooms: response.data[0].bedrooms,
+        bathrooms: response.data[0].bathrooms,
+        name: response.data[0].name,
+        cancellation_policy: response.data[0].cancellation_policy,
+        city: response.data[0].city,
+        neighborhood: response.data[0].neighborhood,
+        state: response.data[0].state,
+        price: response.data[0].nightly_price,
+        summary: response.data[0].summary,
+        zip_code: response.data[0].zip_code,
+        pic_url: response.data[0].pic_url,
+        rating: response.data[0].rating || 3,
+        description: response.data[0].description
+         });
       context.setAddress(context.getLatLong);
 
     })
     // TO DO: render something else when there is an error
     // MAYBE A MODAL??
-    .catch((err) => console.log(err));
+    .catch((err) => console.log('received error', err));
   }
 
   setAddress(callback) {
@@ -75,14 +92,16 @@ class ListingEntryDetail extends React.Component {
   render() {
     return (
       <div>
-        {this.state.title}
-        {this.state.description}
-      
+        <div className="ListingName">
+          {this.state.name}
+        </div>
+        <div className="ListingDescription">
+          {this.state.description}
+        </div>
         {
         // intend to render BookingWindow component 
         //<BookingWindow maxGuests={this.state.fakeListing.num_guests} price={this.state.fakeListing.nightly_price} listingId={this.state.fakeListing.listingId} />
         }
-
       </div>
     );
   }
