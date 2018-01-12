@@ -15,7 +15,6 @@ export default class BookingWindow extends React.Component {
       modalOpen: false,
       listingId: this.props.listingId,
       userId: 1, // only one user for demo - hardcoded
-      // rating: Array(parseInt(this.props.rating)).fill("*"), - plan to implement later, need to update schema
       rating: Array(this.props.rating || 3).fill('*'),
       startDate: undefined,
       endDate: undefined,
@@ -127,7 +126,6 @@ export default class BookingWindow extends React.Component {
               }
               this.checkDates(dates);
             } else {
-              console.log('no dates')
               this.state.resultMessage = 'Please select a check-in date that\'s earlier than check-out date.';
               this.setState({
                 modalOpen: true
@@ -145,9 +143,3 @@ export default class BookingWindow extends React.Component {
     );
   }
 }
-
-
-
-
-
-
