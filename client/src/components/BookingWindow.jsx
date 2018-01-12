@@ -53,6 +53,23 @@ export default class BookingWindow extends React.Component {
     });
   }
 
+  getDates() {
+    var totalPrice;
+    var dates = [];
+    var dayStart = parseInt(this.state.startDate.toString().split('-')[2]);
+    var dayEnd = parseInt(this.state.endDate.toString().split('-')[2]);
+    var month = this.state.startDate.toString().split('-')[1];
+
+    for (var i = dayStart; i <= dayEnd; i++) { 
+      i < 10 ? i = `0${i}` : i = i.toString();
+      var formattedDate = `2017-${month}-${i} 00:00:00`;
+      dates.push(formattedDate);
+      var totalPrice = ((Math.abs(dayEnd - dayStart)) * this.state.price);
+      this.setState({totalPrice: totalPrice});
+    }
+    return dates;
+  }
+
   setStartDate(event) {
     this.setState({
       startDate: event.target.value
@@ -110,19 +127,7 @@ export default class BookingWindow extends React.Component {
           </div>
           <button className="dateSelectionSubmit" onClick={()=>{
             if (this.state.startDate && this.state.endDate && this.isValidDateChoice(Date.parse(this.state.endDate))) {
-              var totalPrice;
-              var dates = [];
-              var dayStart = parseInt(this.state.startDate.toString().split('-')[2]);
-              var dayEnd = parseInt(this.state.endDate.toString().split('-')[2]);
-              var month = this.state.startDate.toString().split('-')[1];
-    
-              for (var i = dayStart; i <= dayEnd; i++) { 
-                i < 10 ? i = `0${i}` : i = i.toString();
-                var formattedDate = `2017-${month}-${i} 00:00:00`;
-                dates.push(formattedDate);
-                var totalPrice = ((Math.abs(dayEnd - dayStart)) * this.state.price);
-                this.setState({totalPrice: totalPrice});
-              }
+              var dates = this.getDates();
               this.checkDates(dates);
             } else {
               this.state.resultMessage = 'Please select a check-in date that\'s earlier than check-out date.';
