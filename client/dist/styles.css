@@ -10,8 +10,14 @@
 
 }
 
+.containerBooking {
+	border: solid grey 2px;
+	border-radius: 25px 0px 25px 0px;
+	padding: 5px;
+}
+
 .listingImage {
-  width: 100px;
+  width: 300px;
 }
 
 .listingDiv {
