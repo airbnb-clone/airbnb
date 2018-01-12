@@ -23,13 +23,8 @@ const saveReservation = (listing, user, dates, callback) => {
   });
 
   Promise.all(promises).then(function(values) {
-    console.log(values); // render success page 
+    callback(values); // render success page 
   });
-
-  
-
-
-
 };
 
 module.exports = saveReservation;

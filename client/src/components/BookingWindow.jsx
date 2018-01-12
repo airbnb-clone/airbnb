@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
+import Modal from 'react-responsive-modal';
 
 
 export default class BookingWindow extends React.Component {
@@ -10,6 +11,7 @@ export default class BookingWindow extends React.Component {
     super(props);
     this.state = {
       price: this.props.price,
+      open: false,
       listingId: this.props.listingId,
       userId: 1, // only one user for demo - hardcoded
       // rating: Array(parseInt(this.props.rating)).fill("*"), - plan to implement later, need to update schema
@@ -17,11 +19,14 @@ export default class BookingWindow extends React.Component {
       startDate: undefined,
       endDate: undefined,
       maxGuests: Array(parseInt(this.props.maxGuests)).fill('1'),
-      totalPrice: undefined
+      totalPrice: undefined,
+      resultMessage: undefined
     };
     this.setStartDate = this.setStartDate.bind(this);
     this.setEndDate = this.setEndDate.bind(this);
     this.checkDates = this.checkDates.bind(this);
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
   }
 
   checkDates(dates) {
@@ -32,6 +37,18 @@ export default class BookingWindow extends React.Component {
       user: app.state.userId
     }).then(function(response) {
       console.log(response);
+      if (response.data === 'failure') {
+        app.state.resultMessage = 'Sorry, this property is not available at that time.';
+        app.setState({
+          open: true
+        });
+      }
+      if (response.data === 'success') {
+        app.state.resultMessage = `Your reservation is booked! \n ${app.state.startDate} through ${app.state.endDate}`; // bring in moment to make these human readable
+        app.setState({
+          open: true
+        });
+      }
     }).catch(function(error) {
       console.log('failed due to ' + error);
     });
@@ -48,9 +65,21 @@ export default class BookingWindow extends React.Component {
       endDate: event.target.value
     });
   }
+  
+  onOpenModal() {
+    this.setState({
+      open: true
+    });
+  }
+
+  onCloseModal() {
+    this.setState({
+      open: false
+    });
+  }
 
   render() {
-
+    const {open} = this.state;
     return (
     
       <div>
@@ -93,6 +122,9 @@ export default class BookingWindow extends React.Component {
             this.checkDates(dates);
           }}> Book it! </button>
         </div>
+        <Modal open={open} onClose={this.onCloseModal} little>
+          <p> {this.state.resultMessage} </p>
+        </Modal>
       </div>
     );
   }

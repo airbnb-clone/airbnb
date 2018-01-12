@@ -16,8 +16,10 @@ router.post('*/bookings-james', (req, res) => {
   checkAvailability(listingId, dates, function(results) {
     if (results) {
       saveReservation(listingId, userId, dates, function(results) {
+        res.send('success');
       });
     } else {
+      res.send('failure');
       console.log('failed'); // render failures 'already booked' page
     }
   });
