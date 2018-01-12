@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ListingEntry from './listingentry.jsx';
+import {Switch, Route} from 'react-router-dom';
 
 class Listings extends React.Component {
   constructor(props) {
