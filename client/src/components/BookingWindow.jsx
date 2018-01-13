@@ -61,24 +61,24 @@ export default class BookingWindow extends React.Component {
     
     var i = dayStart;
     var max;
-
-    shortMonths.includes(startMonth) ? max = 30 : max = 31;
-    startMonth === 2 ? max = 28 : max = max;
-
+    if (dayStart > dayEnd) {
+      shortMonths.includes(startMonth) ? max = 30 : max = 31;
+      startMonth === 2 ? max = 28 : max = max;
+    } else {
+      max = dayEnd;
+    }
+    
     while (month <= parseInt(endMonth)) {
       while (i <= max) {
-
-        var j = i - 0;
-        j < 10 ? j = `0${j}` : j = j.toString();
-        var formattedDate = `${year}-${month}-${j} 00:00:00`;
-
+        i < 10 ? i = `0${i}` : i = i;
+        var formattedDate = `${year}-${month}-${i} 00:00:00`;
         dates.push(formattedDate);
         var totalPrice = dates.length * this.state.price;
         this.setState({totalPrice: totalPrice});
         i++;
       }
       i = 1;
-      max = parseInt(dayEnd);
+      max = dayEnd;
       month++;
     }
     return dates;
