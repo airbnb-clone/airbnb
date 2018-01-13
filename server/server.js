@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const path = require('path');
-
+const router = require('./routers.js')
 const helpers = require('./server.js');
 const db = require('./../database/queries.js');
 
@@ -10,7 +10,6 @@ const https = require('https');
 https.createServer(app);
 const PORT = process.env.PORT || 1234;
 
-const router = require('./routers.js')
 
 app
   .use(express.static(path.join(__dirname, '/../client/dist/')))

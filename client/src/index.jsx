@@ -32,20 +32,13 @@ import Main from './components/main.jsx'
     return (
       <div>
         <Search search={this.search} />
-        <Main />
+        <Listings />
       </div>
     );
   }
 }
 
-ReactDOM.render(
-  <BrowserRouter history={hashHistory}>
-    <div>
-      <Route path='/' exact component={App}></Route>
-      <Route path='/user' component={UserComponent}></Route>
-    </div>
-  </BrowserRouter>
-  , document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'))
 
 
 
