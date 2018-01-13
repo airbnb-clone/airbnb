@@ -9,7 +9,11 @@ const googleAPI = require('./../api/gMapClient.js');
 const getListingById = require('./../database/queries/getListingById.js');
 
 
-router.get('*/listings-bryce', (req, res) => getListingsByCity(req.query.city, results => res.send(results)));
+router.get('*/listings-bryce', (req, res) => getListingsByCity(req.query.city, (results) => {
+  console.log(results);
+  res.json(results);
+}
+));
 
 router.post('*/bookings-james', (req, res) => {
   var dates = req.body.data;
