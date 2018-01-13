@@ -9,7 +9,7 @@ class ListingEntryDetail extends React.Component {
     super(props);
 
     this.state = {
-      listingId: this.props.match.params.id,
+      listingId: this.props.match.params.id || this.props.id,
       // should be this format {lat: 42.2828747, lng: -71.13467840000001}
       latLong: null,
       listing: null,
@@ -19,7 +19,7 @@ class ListingEntryDetail extends React.Component {
     this.getAllDetails = this.getAllDetails.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getAllDetails(this.props.match.params.id);
   }
 
