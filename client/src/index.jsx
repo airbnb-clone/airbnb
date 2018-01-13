@@ -38,13 +38,5 @@ import Main from './components/main.jsx'
   }
 }
 
-const Child = ({match}) => (
-  <div>
-    <h3> ID: {match.params.id} </h3>
-  </div>
-)
 
-ReactDOM.render(<BrowserRouter history={hashHistory}>
-  <App />
-</BrowserRouter>
-  , document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'))

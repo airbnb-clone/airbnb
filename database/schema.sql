@@ -85,17 +85,7 @@ CREATE TABLE `users` (
 ALTER TABLE `bookings` ADD FOREIGN KEY (listing_id) REFERENCES `listings` (`id`);
 ALTER TABLE `bookings` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 
--- ---
--- Table Properties
--- ---
 
--- ALTER TABLE `listings` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `bookings` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ---
--- Test Data
--- ---
 
 -- INSERT INTO `listings` (`id`,`num_guests`,`bedrooms`,`bathrooms`,`name`,`description`,`summary`,`neighborhood`,`street_address`,`zip_code`,`city`,`state`,`cancellation_policy`,`nightly_price`,`pic_url`) VALUES
 -- ('','','','','','','','','','','','','','','');
