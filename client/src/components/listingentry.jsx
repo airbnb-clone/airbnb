@@ -22,11 +22,7 @@ class ListingEntry extends React.Component {
   }
 }
 
-const Child = ({match}) => (
-  <div id="child">
-    <h3> ID: {match.params.id} </h3>
-  </div>
-)
+
 
 
 export default ListingEntry;
