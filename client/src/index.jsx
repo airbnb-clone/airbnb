@@ -32,13 +32,11 @@ import Main from './components/main.jsx'
     return (
       <div>
         <Search search={this.search} />
-        <Listings />
+        <Main />
       </div>
     );
   }
 }
 
+
 ReactDOM.render(<App />, document.getElementById('app'))
-
-
-

@@ -37,20 +37,51 @@ export default class BookingWindow extends React.Component {
       user: app.state.userId
     }).then(function(response) {
       if (response.data === 'failure') {
-        app.state.resultMessage = 'Sorry, this property is not available at that time.';
-        app.setState({
-          modalOpen: true
-        });
+        app.notifyUnavailable();
       }
       if (response.data === 'success') {
-        app.state.resultMessage = `Your reservation is booked! ${moment(app.state.startDate).format('dddd, MMMM Do YYYY')} - ${moment(app.state.endDate).format('dddd, MMMM Do YYYY')}`; // bring in moment to make these human readable
-        app.setState({
-          modalOpen: true
-        });
+        app.notifySuccess();
       }
     }).catch(function(error) {
       console.log('failed due to ' + error);
     });
+  }
+
+  getDates() { 
+    var startDateParts = this.state.startDate.toString().split('-');
+    var endDateParts = this.state.endDate.toString().split('-');
+
+    var [year, dayStart, startMonth] = [startDateParts[0], parseInt(startDateParts[2]), parseInt(startDateParts[1])];
+    var [dayEnd, endMonth] = [parseInt(endDateParts[2]), parseInt(endDateParts[1])];
+    var month = parseInt(startMonth);
+
+    var dates = [];
+    var shortMonths = [4, 6, 9, 11];
+    
+    
+    var i = dayStart;
+    var max;
+
+    shortMonths.includes(startMonth) ? max = 30 : max = 31;
+    startMonth === 2 ? max = 28 : max = max;
+
+    while (month <= parseInt(endMonth)) {
+      while (i <= max) {
+
+        var j = i - 0;
+        j < 10 ? j = `0${j}` : j = j.toString();
+        var formattedDate = `${year}-${month}-${j} 00:00:00`;
+
+        dates.push(formattedDate);
+        var totalPrice = dates.length * this.state.price;
+        this.setState({totalPrice: totalPrice});
+        i++;
+      }
+      i = 1;
+      max = parseInt(dayEnd);
+      month++;
+    }
+    return dates;
   }
 
   setStartDate(event) {
@@ -81,6 +112,36 @@ export default class BookingWindow extends React.Component {
     return (this.state.startDate === undefined || endDateUnix < Date.parse(this.state.startDate)) ? false : true;
   }
 
+  notifyOfBadDateSelection() {
+    this.state.resultMessage = 'Please select a check-in date that\'s earlier than check-out date.';
+    this.setState({
+      modalOpen: true
+    });
+  }
+
+  notifyUnavailable() {
+    this.state.resultMessage = 'Sorry, this property is not available at that time.';
+    this.setState({
+      modalOpen: true
+    });
+  }
+
+  notifySuccess() {
+    this.state.resultMessage = `Your reservation is booked! ${moment(this.state.startDate).format('dddd, MMMM Do YYYY')} - ${moment(this.state.endDate).format('dddd, MMMM Do YYYY')}`; // bring in moment to make these human readable
+    this.setState({
+      modalOpen: true
+    });
+  }
+
+  handleClick() {
+    if (this.state.startDate && this.state.endDate && this.isValidDateChoice(Date.parse(this.state.endDate))) {
+      var dates = this.getDates();
+      this.checkDates(dates);
+    } else {
+      this.notifyOfBadDateSelection();
+    }
+  }
+
   render() {
     const {modalOpen} = this.state;
     return (
@@ -109,27 +170,7 @@ export default class BookingWindow extends React.Component {
             {this.state.totalPrice ? <h2> Total price: ${this.state.totalPrice}</h2> : null}
           </div>
           <button className="dateSelectionSubmit" onClick={()=>{
-            if (this.state.startDate && this.state.endDate && this.isValidDateChoice(Date.parse(this.state.endDate))) {
-              var totalPrice;
-              var dates = [];
-              var dayStart = parseInt(this.state.startDate.toString().split('-')[2]);
-              var dayEnd = parseInt(this.state.endDate.toString().split('-')[2]);
-              var month = this.state.startDate.toString().split('-')[1];
-    
-              for (var i = dayStart; i <= dayEnd; i++) { 
-                i < 10 ? i = `0${i}` : i = i.toString();
-                var formattedDate = `2017-${month}-${i} 00:00:00`;
-                dates.push(formattedDate);
-                var totalPrice = ((Math.abs(dayEnd - dayStart)) * this.state.price);
-                this.setState({totalPrice: totalPrice});
-              }
-              this.checkDates(dates);
-            } else {
-              this.state.resultMessage = 'Please select a check-in date that\'s earlier than check-out date.';
-              this.setState({
-                modalOpen: true
-              });
-            }
+            this.handleClick();
           }}> Book it! </button>
         </div>
 
