@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Search from './components/Search.jsx';
 import Listings from './components/listings.jsx'
 import axios from 'axios';
+import {BrowserRouter, Route, hashHistory} from 'react-router-dom';
+import Main from './components/main.jsx'
 
  export default class App extends React.Component {
   constructor(props) {
@@ -30,10 +32,19 @@ import axios from 'axios';
     return (
       <div>
         <Search search={this.search} />
-        <Listings />
+        <Main />
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const Child = ({match}) => (
+  <div>
+    <h3> ID: {match.params.id} </h3>
+  </div>
+)
+
+ReactDOM.render(<BrowserRouter history={hashHistory}>
+  <App />
+</BrowserRouter>
+  , document.getElementById('app'));
