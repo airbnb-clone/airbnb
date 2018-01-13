@@ -37,16 +37,10 @@ export default class BookingWindow extends React.Component {
       user: app.state.userId
     }).then(function(response) {
       if (response.data === 'failure') {
-        app.state.resultMessage = 'Sorry, this property is not available at that time.';
-        app.setState({
-          modalOpen: true
-        });
+        app.notifyUnavailable();
       }
       if (response.data === 'success') {
-        app.state.resultMessage = `Your reservation is booked! ${moment(app.state.startDate).format('dddd, MMMM Do YYYY')} - ${moment(app.state.endDate).format('dddd, MMMM Do YYYY')}`; // bring in moment to make these human readable
-        app.setState({
-          modalOpen: true
-        });
+        app.notifySuccess();
       }
     }).catch(function(error) {
       console.log('failed due to ' + error);
@@ -78,8 +72,6 @@ export default class BookingWindow extends React.Component {
         j < 10 ? j = `0${j}` : j = j.toString();
         var formattedDate = `2017-${month}-${j} 00:00:00`;
 
-
-        console.log(formattedDate);
         dates.push(formattedDate);
         var totalPrice = dates.length * this.state.price;
         this.setState({totalPrice: totalPrice});
@@ -127,6 +119,29 @@ export default class BookingWindow extends React.Component {
     });
   }
 
+  notifyUnavailable() {
+    this.state.resultMessage = 'Sorry, this property is not available at that time.';
+    this.setState({
+      modalOpen: true
+    });
+  }
+
+  notifySuccess() {
+    this.state.resultMessage = `Your reservation is booked! ${moment(this.state.startDate).format('dddd, MMMM Do YYYY')} - ${moment(this.state.endDate).format('dddd, MMMM Do YYYY')}`; // bring in moment to make these human readable
+    this.setState({
+      modalOpen: true
+    });
+  }
+
+  handleClick() {
+    if (this.state.startDate && this.state.endDate && this.isValidDateChoice(Date.parse(this.state.endDate))) {
+      var dates = this.getDates();
+      this.checkDates(dates);
+    } else {
+      this.notifyOfBadDateSelection();
+    }
+  }
+
   render() {
     const {modalOpen} = this.state;
     return (
@@ -155,12 +170,7 @@ export default class BookingWindow extends React.Component {
             {this.state.totalPrice ? <h2> Total price: ${this.state.totalPrice}</h2> : null}
           </div>
           <button className="dateSelectionSubmit" onClick={()=>{
-            if (this.state.startDate && this.state.endDate && this.isValidDateChoice(Date.parse(this.state.endDate))) {
-              var dates = this.getDates();
-              this.checkDates(dates);
-            } else {
-              this.notifyOfBadDateSelection();
-            }
+            this.handleClick();
           }}> Book it! </button>
         </div>
 
