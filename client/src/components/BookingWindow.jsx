@@ -47,15 +47,17 @@ export default class BookingWindow extends React.Component {
     });
   }
 
-  getDates() {
-    var shortMonths = ['4', '6', '9', '11'];
-    var totalPrice;
-    var dates = [];
-    var dayStart = parseInt(this.state.startDate.toString().split('-')[2]);
-    var dayEnd = parseInt(this.state.endDate.toString().split('-')[2]);
-    var startMonth = this.state.startDate.toString().split('-')[1];
-    var endMonth = this.state.endDate.toString().split('-')[1];
+  getDates() { 
+    var startDateParts = this.state.startDate.toString().split('-');
+    var endDateParts = this.state.endDate.toString().split('-');
+
+    var [year, dayStart, startMonth] = [startDateParts[0], parseInt(startDateParts[2]), parseInt(startDateParts[1])];
+    var [dayEnd, endMonth] = [parseInt(endDateParts[2]), parseInt(endDateParts[1])];
     var month = parseInt(startMonth);
+
+    var dates = [];
+    var shortMonths = [4, 6, 9, 11];
+    
     
     var i = dayStart;
     var max;
@@ -63,14 +65,12 @@ export default class BookingWindow extends React.Component {
     shortMonths.includes(startMonth) ? max = 30 : max = 31;
     startMonth === 2 ? max = 28 : max = max;
 
-    
-
     while (month <= parseInt(endMonth)) {
       while (i <= max) {
 
         var j = i - 0;
         j < 10 ? j = `0${j}` : j = j.toString();
-        var formattedDate = `2017-${month}-${j} 00:00:00`;
+        var formattedDate = `${year}-${month}-${j} 00:00:00`;
 
         dates.push(formattedDate);
         var totalPrice = dates.length * this.state.price;
