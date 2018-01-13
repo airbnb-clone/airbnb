@@ -39,7 +39,7 @@ import Main from './components/main.jsx'
 }
 
 
-ReactDOM.render(<BrowserRouter>
+ReactDOM.render(<BrowserRouter history={hashHistory}>
   <App />
 </BrowserRouter>
-  , document.getElementById('app'))
+  , document.getElementById('app'));
