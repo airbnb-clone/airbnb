@@ -1,8 +1,6 @@
 const bodyParser = require('body-parser');
 const path = require('path');
 const routers = require('./routers.js')
-const helpers = require('./server.js');
-const db = require('./../database/queries.js');
 
 const express = require('express');
 const app = express();
