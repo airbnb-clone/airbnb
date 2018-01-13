@@ -8,7 +8,7 @@ const saveReservation = require('./../database/queries/saveReservation.js');
 const getLatLong = require('./../api/gMaps.js');
 const getListingById = require('./../database/queries/getListingById.js');
 
-router.get('*/listings-bryce', (req, res) => getAllListings(results => console.log(results)));
+
 router.get('*/listings-bryce', (req, res) => getListingsByCity(req.query.city, results => res.send(results)));
 
 router.post('*/bookings-james', (req, res) => {
