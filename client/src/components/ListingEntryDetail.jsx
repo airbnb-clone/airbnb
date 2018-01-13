@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import BookingWindow from './BookingWindow.jsx';
-// import GMap from './GMap.jsx';
+import GMap from './GMap.jsx';
 
 class ListingEntryDetail extends React.Component {
   constructor(props) {
