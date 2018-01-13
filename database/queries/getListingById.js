@@ -1,9 +1,11 @@
 const connection = require('./../config.js');
 
-const getListingById = (id, callback) => {
+const getListingById = (id) => {
   id = JSON.stringify(id);
   const query = `SELECT * FROM listings WHERE id=${id}`;
-  connection.query(query, (err, result, fields) => err ? callback(err) : callback(result));
+  return new Promise ((resolve, reject) => {
+    connection.query(query, (err, result, fields) => err ? reject(err) : resolve(result));
+  })
 }
 
 module.exports = getListingById;
