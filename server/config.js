@@ -1,10 +1,18 @@
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'airbnb'
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'airbnb'
 });
 
-module.exports.connection = connection;
+connection.connect(function (err){
+  if (err) {
+    console.log('Error connecting to database');
+  } else {
+    console.log('Database connected breh!');
+  }
+
+})
+
+module.exports = connection;
