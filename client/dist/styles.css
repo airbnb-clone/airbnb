@@ -11,13 +11,21 @@
 }
 
 .containerBooking {
+  text-align: center;
 	border: solid grey 2px;
 	border-radius: 25px 0px 25px 0px;
 	padding: 5px;
+  width: 350px;
 }
 
 .dateSelectionSubmit {
-	
+  color: white;
+  border-radius: 4px;
+  font-size: large;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background: rgb(202, 60, 60);
+  width: 200px;
+  height: 55px;
 }
 
 .listingImage {

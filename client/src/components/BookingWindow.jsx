@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
+import {emojify} from 'react-emojione';
 import moment from 'moment';
+
 
 
 export default class BookingWindow extends React.Component {
@@ -148,9 +150,10 @@ export default class BookingWindow extends React.Component {
     
       <div>
         <div className="containerBooking">
-          <h1> ${this.props.price} / night</h1>
-          <h2> Star Rating: {this.state.rating.map(r => r)}</h2>
+          <h1> ${this.props.price} <span style={{'font-size': 'medium', 'font-weight': '200'}}> per night </span></h1>
+          <h2> Rating: {this.state.rating.map(r => emojify(':star:'))}</h2>
           <hr/>
+
           <div className="bookingDatesBox">
             <h2> Check-in: 
               <input type="date" id="startDate" onChange={this.setStartDate}/>

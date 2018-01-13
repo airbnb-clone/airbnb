@@ -23,6 +23,7 @@
     "babel-preset-react": "^6.23.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
     "express": "^4.16.2",
     "google-map-react": "^0.27.0",
     "jquery": "^3.2.1",
@@ -31,9 +32,13 @@
     "react": "^16.2.0",
     "react-datepicker": "^1.0.4",
     "react-dom": "^16.2.0",
+    "react-emojione": "^5.0.0",
     "react-responsive-modal": "^2.0.0",
     "react-router-dom": "^4.2.2",
-    "webpack": "^2.2.1"
+    "react-transition-group": "^2.2.1",
+    "reactstrap": "^4.8.0",
+    "webpack": "^2.2.1",
+    "webpack-css-loaders": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
