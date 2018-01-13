@@ -45,25 +45,30 @@ class ListingEntryDetail extends React.Component {
   // TO DO: if no latLong returned from the GET request, this.state.mapVis needs to be false
 
   render() {
-    return (
-      <div>
-        <Link to={"/"}> Go back </Link>
+    if(this.state.listing === null ) {
+      return null;
+    } else {
+      return (
+        <div>
+          <Link to={"/"}> Go back </Link>
 
-        <div className="ListingName">
-          <h3> {this.state.name} </h3>
+          <div className="ListingName">
+            <h3> {this.state.listing.name} </h3>
+          </div>
+
+          <img src={this.state.listing.pic_url} />
+
+          <div className="ListingDescription">
+            <p>{this.state.listing.description}</p>
+          </div>
+          {
+            // <BookingWindow maxGuests={this.state.listing.num_guests} price={this.state.listing.nightly_price} listingId={this.state.listingId} />
+          }
+
         </div>
+      );
 
-        <img src={this.state.pic_url} />
-
-        <div className="ListingDescription">
-          <p>{this.state.description}</p>
-        </div>
-        {
-          // <BookingWindow maxGuests={this.state.listing.num_guests} price={this.state.listing.nightly_price} listingId={this.state.listingId} />
-        }
-        <GMap latLong={this.state.latLong} />
-      </div>
-    );
+    }
   }
 }
 

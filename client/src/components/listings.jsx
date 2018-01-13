@@ -8,18 +8,23 @@ class Listings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: []
+      list: this.props.list || []
     }
   }
 
   componentDidMount() {
     var context = this;
-    axios.get('/listings-ted')
-    .then(response => {
-      this.setState({list: response.data});
-      context.forceUpdate();
-    })
-    .catch(error => console.log(error))
+    if(this.state.list.length === 0) {
+      axios.get('/listings-ted')
+      .then(response => {
+        this.setState({list: response.data});
+        context.forceUpdate();
+      })
+      .catch(error => console.log(error))
+
+    } else {
+
+    }
   }
 
   render() {
