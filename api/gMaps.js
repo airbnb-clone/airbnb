@@ -1,5 +1,7 @@
+const API = require('./env.js');
+
 const googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyBHpT6DK_qPNSsqGlDR0FHA_-pYtQ6tKkk',
+  key: API.GeocodeKey,
   Promise: Promise
 });
 // it's cool that promises are native for this package
