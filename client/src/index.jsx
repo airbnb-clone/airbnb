@@ -12,7 +12,7 @@ import Main from './components/main.jsx'
 
     this.state = {
       listings: [],
-      bookings: [],
+      bookings: []
     }
 
     this.search = this.search.bind(this);
