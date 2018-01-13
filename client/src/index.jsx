@@ -11,7 +11,6 @@ import axios from 'axios';
     this.state = {
       listings: [],
       bookings: [],
-      viewBooking: false
     }
     this.search = this.search.bind(this);
   }
@@ -19,18 +18,11 @@ import axios from 'axios';
   search() {
     
   }
-  viewBookings(){
-    this.setState({
-      viewBookings: true
-    })
-  }
 
   render() {
     return (
       <div>
         <Search search={this.search} />
-        <button onClick={() => this.viewBookings()}>Bookings</button>
-        {this.state.viewBookings ? <UserComponent currentBookings={this.currentBookings} pastBookings={this.pastBookings} /> : ''}
       </div>
     );
   }
