@@ -5,7 +5,7 @@ const user = require('./../database/queries/getBooking.js');
 const getListingsByCity = require('./../database/queries/getListingsByCity.js');
 const checkAvailability = require('./../database/queries/checkAvailability.js');
 const saveReservation = require('./../database/queries/saveReservation.js');
-const getLatLong = require('./../api/gMaps.js');
+const googleAPI = require('./../api/gMapClient.js');
 const getListingById = require('./../database/queries/getListingById.js');
 
 
@@ -28,21 +28,25 @@ router.post('*/bookings-james', (req, res) => {
 });
 
 router.get('*/listings-ted', (req, res) => getAllListings(results => {
-  console.log(results)
   res.json(results);
 }
 ));
 
-router.get('*/geocode-iris', (req, res) => {
-  // console.log('REQ QUERY', req.query);
-  getLatLong(JSON.stringify(req.query.address), (results) => {
-    // console.log('RESULTS IN ROUTERS', results);
-    res.json(results);
-  });
-});
-
 router.get('*/listings-iris', (req, res) => {
-	getListingById(req.query.listingId, results => res.send(results)); 
+  var finalResults = {};
+	getListingById(req.query.listingId)
+  .then((listingObj) => {
+    finalResults.listing = listingObj[0];
+    return googleAPI.getAddress(JSON.stringify(listingObj));
+  })
+  .then((addr) => {
+    finalResults.address = addr;
+    return googleAPI.getLatLong(addr, (data) => {
+      finalResults.latLong = data.json.results[0].geometry.location;
+      res.json(finalResults);
+    })   
+  })
+  .catch(err => res.json(err));
 })
 
 router.get('/usercomponent-v', (req, res) => user.getAllBooking(function(err, results){
