@@ -16,8 +16,8 @@ app
     if (req.body) {
       console.log(`req.body: ${JSON.stringify(req.body)}`);
     }
-   if (req.query) {
-     console.log(`req.query: ${JSON.stringify(req.query)}`);
+    if (req.query) {
+      console.log(`req.query: ${JSON.stringify(req.query)}`);
     }
     next();
   })
