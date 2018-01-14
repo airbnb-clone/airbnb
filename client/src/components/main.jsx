@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Listings from './listings.jsx';
+import Listings from './Listings.jsx';
 import ListingEntryDetail from './ListingEntryDetail.jsx';
 
 
-class Main extends React.Component {
+export default class Main extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -19,9 +19,4 @@ class Main extends React.Component {
       </main>
     )
   }
-
 }
-
-
-
-export default Main;
