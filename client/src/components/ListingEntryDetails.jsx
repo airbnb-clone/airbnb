@@ -43,7 +43,9 @@ export default class ListingEntryDetails extends React.Component {
   // TO DO: if no latLong returned from the GET request, this.state.mapVis needs to be false
 
   render() {
-    if (this.state.listing !== null) {
+    if(this.state.listing === null ) {
+ -      return null;
+ -    } else {
       return (
         <div>
           <Link to={"/"}> Go back </Link>
