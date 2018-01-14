@@ -33,8 +33,7 @@ router.post('*/bookings-james', (req, res) => {
 
 router.get('*/listings-ted', (req, res) => getAllListings(results => {
   res.json(results);
-}
-));
+}));
 
 router.get('*/listings-iris', (req, res) => {
   var finalResults = {};
@@ -48,7 +47,7 @@ router.get('*/listings-iris', (req, res) => {
     return googleAPI.getLatLong(addr, (data) => {
       finalResults.latLong = data.json.results[0].geometry.location;
       res.json(finalResults);
-    })   
+    })
   })
   .catch(err => res.json(err));
 })
@@ -62,7 +61,7 @@ router.get('/usercomponent-v', (req, res) => user.getAllBooking(function(err, re
 }));
 router.post('/usercomponent-v', (req, res) => user.cancelReservation(function(err, results){
   //console.log(req.body.id)
-  if(err) { 
+  if(err) {
       console.log(err)
   } else {
     res.json(results)

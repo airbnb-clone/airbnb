@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import ListingEntry from './listingentry.jsx';
+import ListingEntry from './ListingEntry.jsx';
 import {Switch, Route} from 'react-router-dom';
 
-class Listings extends React.Component {
+export default class Listings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,9 +21,6 @@ class Listings extends React.Component {
         context.forceUpdate();
       })
       .catch(error => console.log(error))
-
-    } else {
-
     }
   }
 
@@ -31,23 +28,16 @@ class Listings extends React.Component {
     if (!this.state.list.length >0) {
       return null;
     } else {
-
       return (
         <div>
           <h3><u>All listings</u></h3>
           {
-            this.state.list.map((item, index) => {
-              return <ListingEntry item={item} key={index} />
+            this.state.list.map((listing, index) => {
+              return <ListingEntry listing={listing} key={index} />
             })
           }
-
         </div>
       )
     }
   }
-
-
-
 }
-
-export default Listings;

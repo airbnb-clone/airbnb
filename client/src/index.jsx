@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Search from './components/Search.jsx';
-import Listings from './components/listings.jsx'
+import Listings from './components/Listings.jsx'
 import axios from 'axios';
 import {BrowserRouter, Route, hashHistory} from 'react-router-dom';
-import Main from './components/main.jsx'
+import Main from './components/Main.jsx'
 
  export default class App extends React.Component {
   constructor(props) {
