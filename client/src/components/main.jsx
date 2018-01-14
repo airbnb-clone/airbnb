@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Listings from './Listings.jsx';
-import ListingEntryDetail from './ListingEntryDetail.jsx';
+import ListingEntryDetail from './ListingEntryDetails.jsx';
 
 
 export default class Main extends React.Component {
