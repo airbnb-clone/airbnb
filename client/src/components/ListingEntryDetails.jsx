@@ -45,7 +45,7 @@ export default class ListingEntryDetails extends React.Component {
   render() {
     if(this.state.listing === null ) {
        return null;
-    } else {
+     } else {
       return (
         <div>
           <Link to={"/"}> Go back </Link>

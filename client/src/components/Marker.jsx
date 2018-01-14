@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default const Marker = ({ text }) => (
+const Marker = ({ text }) => (
   <div style={{
     position: 'fixed',
     width: 100,
@@ -17,3 +17,5 @@ export default const Marker = ({ text }) => (
     
   </div>
 );
+
+export default Marker;

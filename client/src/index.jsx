@@ -4,7 +4,8 @@ import Search from './components/Search.jsx';
 import Listings from './components/Listings.jsx'
 import axios from 'axios';
 import {BrowserRouter, Route, hashHistory} from 'react-router-dom';
-import Main from './components/Main.jsx'
+import Main from './components/Main.jsx';
+import Navigation from './components/Navigation.jsx';
 
  export default class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,8 @@ import Main from './components/Main.jsx'
 
     this.state = {
       listings: [],
-      bookings: []
+      bookings: [],
+      searched: false
     }
 
     this.search = this.search.bind(this);
@@ -30,7 +32,7 @@ import Main from './components/Main.jsx'
     .then((response) => {
       console.log('DATA', response.data);
 
-      this.setState({listings: response.data});
+      this.setState({listings: response.data, searched: true});
       this.forceUpdate();
 
     })
@@ -38,14 +40,15 @@ import Main from './components/Main.jsx'
   }
 
   goHome() {
-    this.setState({listings: []});
+    this.setState({listings: [], searched: false});
     this.forceUpdate();
   }
+
   render() {
-    if(this.state.listings.length > 0) {
+    if (this.state.listings.length > 0) {
       return (
         <div>
-          <Search search={this.search} />
+          <Navigation searched={this.state.searched}/>
           <div><button onClick={this.goHome}> Go back </button></div>
           <Listings list={this.state.listings}/>
         </div>
@@ -53,8 +56,8 @@ import Main from './components/Main.jsx'
     } else {
       return (
         <div>
+          <Navigation searched={this.state.searched} />
           <Search search={this.search} />
-          <Main listings={this.state.listings}/>
         </div>
       );
     }
