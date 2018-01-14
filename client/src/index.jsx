@@ -51,7 +51,6 @@ import Main from './components/Main.jsx'
         </div>
       )
     } else {
-
       return (
         <div>
           <Search search={this.search} />
