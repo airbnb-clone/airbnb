@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import API from './../../../api/env.js';
 import GoogleMapReact from 'google-map-react';
+import Marker from './Marker.jsx';
 
-const Container = ({ text }) => <div>{ text }</div>;
+const Container = ({ latLong }) => <div><Marker /></div>;
 
 export default class GMap extends React.Component {
   constructor(props) {
@@ -17,22 +18,20 @@ export default class GMap extends React.Component {
       height: '50vh'
       }
     }
-   
   }
 
   render() {
     return (
       <div className='google-map' style={this.state.style}>
         <GoogleMapReact
-          bootstrapURLKeys={{key: this.state.apiKey}} 
+          bootstrapURLKeys={ {key: this.state.apiKey} } 
           defaultCenter={ this.state.latLong }
           defaultZoom={ this.state.zoom }>
-          <Container
-            lat={ this.state.latLong.lat }
-            lng={ this.state.latLong.lng }
+          <Container 
+            latLong={this.state.latLong}
           />
         </GoogleMapReact>
       </div>
-    )
+    );
   }
 }
