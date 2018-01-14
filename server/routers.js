@@ -16,20 +16,16 @@ router.get('*/listings-bryce', (req, res) => getListingsByCity(req.query.city, (
 ));
 
 router.post('*/bookings-james', (req, res) => {
-  var dates = req.body.data;
-  var listingId = req.body.listing;
-  var userId = req.body.user;
-  checkAvailability(listingId, dates, function(results) {
-    if (results) {
-      saveReservation(listingId, userId, dates, function(results) {
-        res.send('success');
-      });
-    } else {
-      res.send('failure');
-      console.log('failed'); // render failures 'already booked' page
-    }
+  let dates = req.body.data;
+  let listingId = req.body.listing;
+  let userId = req.body.user;
+  checkAvailability(listingId, dates, results => {
+    results ? saveReservation(listingId, userId, dates, results => res.send('success')) : res.send('failure');
   });
 });
+
+
+
 
 router.get('*/listings-ted', (req, res) => getAllListings(results => {
   res.json(results);

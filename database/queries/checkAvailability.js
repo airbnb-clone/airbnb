@@ -1,24 +1,21 @@
-
 const connection = require('./../config.js');
 
 const checkAvailability = (listing, dates, callback) => {
-  var queryString = 'select * from bookings where listing_id = ' + listing;
+  let sql = `SELECT * FROM bookings WHERE listing_id=${listing}`;
 
-
-  connection.query(queryString, (err, results) => {
-    var availability = true;
+  connection.query(sql, (err, results) => {
+    let availability = true;
     if (err) {
       console.log(err);
     } else {
-      var bookedDates = [];
-      results.forEach(result => {
-        bookedDates.push(result.dateRented);
-      });
-      var formattedDates = bookedDates.map(bd => bd.toString().split(' ').slice(0, 5).join(' '));
+      let bookedDates = [];
+      results.forEach(result => bookedDates.push(result.dateRented));
+
+      let formattedDates = bookedDates.map(datesBooked => datesBooked.toString().split(' ').slice(0, 5).join(' '));
       dates.forEach(date => {
-        var unixDate = Date.parse(date);
+        let unixDate = Date.parse(date);
         formattedDates.forEach(formDate => {
-          var unixFormDate = Date.parse(formDate);
+          let unixFormDate = Date.parse(formDate);
           if (unixDate === unixFormDate) {
             availability = false;
           }
@@ -31,5 +28,3 @@ const checkAvailability = (listing, dates, callback) => {
 };
 
 module.exports = checkAvailability;
-
-

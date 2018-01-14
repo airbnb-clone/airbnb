@@ -1,32 +1,19 @@
-
 const connection = require('./../config.js');
-var Promise = require('bluebird');
+let Promise = require('bluebird');
 
 const saveReservation = (listing, user, dates, callback) => {
-  var promises = [];
+  let promises = [];
 
-  var promisify = function(insertString) {
-    return new Promise((resolve, reject) => {
-      connection.query(insertString, (err, results) => {
-        if (err) {
-          reject(err); 
-        } else {
-          resolve(results);
-        }
-      });
-    });
+  let promisify = sql => {
+    return new Promise((resolve, reject) => connection.query(sql, (err, results) => err ? reject(err) : resolve(results)));
   };
 
   dates.forEach(date => {
-    var insertString = `insert into bookings (listing_id, user_id, dateRented) values (${listing}, ${user}, '${date}');`;
-    promises.push(promisify(insertString));
+    let sql = `INSERT INTO bookings (listing_id, user_id, dateRented) VALUES (${listing}, ${user}, '${date}');`;
+    promises.push(promisify(sql));
   });
 
-  Promise.all(promises).then(function(values) {
-    callback(values); // render success page 
-  });
+  Promise.all(promises).then(values => callback(values)); 
 };
 
 module.exports = saveReservation;
-
-
