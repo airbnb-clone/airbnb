@@ -30,8 +30,8 @@ import Main from './components/Main.jsx'
     .then((response) => {
       console.log('DATA', response.data);
 
-      context.setState({listings: response.data});
-      context.forceUpdate();
+      this.setState({listings: response.data});
+      this.forceUpdate();
 
     })
     .catch(error => console.log(error))

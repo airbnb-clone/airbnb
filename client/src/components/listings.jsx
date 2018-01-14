@@ -13,12 +13,12 @@ export default class Listings extends React.Component {
   }
 
   componentDidMount() {
-    var context = this;
+
     if(this.state.list.length === 0) {
       axios.get('/listings-ted')
       .then(response => {
         this.setState({list: response.data});
-        context.forceUpdate();
+
       })
       .catch(error => console.log(error))
     }
