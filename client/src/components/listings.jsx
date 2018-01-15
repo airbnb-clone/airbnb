@@ -8,7 +8,8 @@ export default class Listings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: this.props.list || []
+      list: this.props.list || [],
+      search: false
     }
   }
 
@@ -24,13 +25,25 @@ export default class Listings extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+
+      if(prevProps.list !== prevState.list) {
+        this.setState({list: prevProps.list});
+
+
+      }
+
+  }
+
   render() {
     if (!this.state.list.length >0) {
       return null;
     } else {
+      const explore = this.props.search ? `Explore ${this.state.list[0].city}`: 'All Listings';
+
       return (
         <div>
-          <h3><u>All listings</u></h3>
+          <h3><u>{explore}</u></h3>
           {
             this.state.list.map((listing, index) => {
               return <ListingEntry listing={listing} key={index} />

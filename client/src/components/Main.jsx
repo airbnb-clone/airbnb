@@ -8,11 +8,14 @@ export default class Main extends React.Component {
     super(props);
   }
 
+  componentDidUpdate(prevProps, prevState){
+    console.log(prevProps);
+  }
   render() {
     return(
       <main>
         <Switch>
-          <Route exact path="/" component={Listings} />
+          <Route exact path="/" render={(props)=> (<Listings list={this.props.listings} onSearch={this.props.onSearch} search={this.props.search}/>)} />
           <Route path="/listings/:id" component={ListingEntryDetails} />
         </Switch>
       </main>
