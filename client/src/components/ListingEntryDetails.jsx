@@ -15,6 +15,7 @@ export default class ListingEntryDetails extends React.Component {
       mapVis: true, // to prevent map from rendering if no latLong
       address: ''
     }
+    console.log(this)
     this.getAllDetails = this.getAllDetails.bind(this);
   }
 
@@ -44,8 +45,8 @@ export default class ListingEntryDetails extends React.Component {
 
   render() {
     if(this.state.listing === null ) {
- -      return null;
- -    } else {
+       return null;
+     } else {
       return (
         <div>
           <Link to={"/"}> Go back </Link>

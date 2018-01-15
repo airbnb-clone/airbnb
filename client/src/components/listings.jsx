@@ -8,14 +8,28 @@ export default class Listings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: this.props.list || []
+      list: this.props.list || [],
+      search: this.props.match.params.city
     }
   }
 
-  componentDidMount() {
+  componentWillReceiveProps(Nextprops){
+    this.setState({
+      search: Nextprops.match.params.city
+    })
+    console.log(this)
+ 
+  }
 
+  componentDidUpdate(){
+    this.getInfo()
+  }
+
+  componentDidMount() {
     if(this.state.list.length === 0) {
-      axios.get('/listings-ted')
+      axios.get('/listings-bryce', {params: {
+        city: this.state.search
+      }})
       .then(response => {
         this.setState({list: response.data});
 
@@ -23,6 +37,18 @@ export default class Listings extends React.Component {
       .catch(error => console.log(error))
     }
   }
+ 
+  getInfo(){
+    axios.get('/listings-bryce', {params: {
+      city: this.state.search
+    }})
+    .then(response => {
+      this.setState({list: response.data});
+
+    })
+    .catch(error => console.log(error))
+  }
+
 
   render() {
     if (!this.state.list.length >0) {
