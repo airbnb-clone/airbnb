@@ -20,6 +20,8 @@ import Navigation from './components/Navigation.jsx';
       searched: false
     }
     this.search = this.search.bind(this);
+    this.goHome = this.goHome.bind(this);
+    this.goToTrips = this.goToTrips.bind(this);
   }
 
   search(city) {
@@ -37,26 +39,23 @@ import Navigation from './components/Navigation.jsx';
     .catch(error => console.log(error))
   }
 
-  // render() {
-  //   return (
-  //     <div>
-  //       <Search search={this.search} />
-  //       <Link to="/bookings"><button>button</button></Link>
-  //     </div>
-  //   )
   goHome() {
     this.setState({listings: [], searched: false});
-    //this.forceUpdate();
+  }
+
+  goToTrips() {
+    this.setState({searched: true});
   }
 
   render() {
     return(
       <div>
-        <Navigation searched={this.state.searched} search={this.search}/>
-        {this.state.searched ? null : <Search search={this.search} />}
-        <Link to="/bookings"><button>button</button></Link>
+        <div className="nav">
+          <Navigation searched={this.state.searched} search={this.search} goHome={this.goHome} goToTrips={this.goToTrips}/>
+        </div>
+        {this.state.searched ? null : <div className="mainSearch"><Search search={this.search}/></div>}
       </div>
-    )
+    );
   }
 }
 
