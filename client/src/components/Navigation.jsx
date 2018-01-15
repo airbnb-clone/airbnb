@@ -6,36 +6,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 export default class Navigation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      collapsed: true
-    };
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.toggle = this.toggle.bind(this);
   }
-
-  toggleNavbar() {
-    this.setState({collapsed: !this.state.collapsed});
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
+  
   render() {
     return (
-      <div>
-        <Navbar color="faded" light expand="ml">
-          <NavbarBrand href="/">Airbnb Logo</NavbarBrand>
-          {this.props.searched ? <Search search={this.props.search} /> : null}
-          <Nav className="ml-auto" >
+      <div className="nav">
+        <Navbar color="faded" light>
+          <NavbarBrand href="/"><img className="navLogo" src="/assets/logo.png" alt="airbnb" onClick={this.props.goHome}></img></NavbarBrand>
+          {this.props.searched ? <div className="navSearch"><Search search={this.props.search}/></div> : null}
+          <Nav>
             <NavItem>
-              <NavLink href="#">Saved</NavLink>
+              <a className="navButton" href="#">Saved</a>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Trips</NavLink>
+              <a className="navButton" href="#">Trips</a>
             </NavItem>
           </Nav>
         </Navbar>

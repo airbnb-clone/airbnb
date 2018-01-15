@@ -48,8 +48,7 @@ import Navigation from './components/Navigation.jsx';
     if (this.state.listings.length > 0) {
       return (
         <div>
-          <Navigation searched={this.state.searched}/>
-          <div><button onClick={this.goHome}> Go back </button></div>
+          <Navigation searched={this.state.searched} goHome={this.goHome}/>
           <Listings list={this.state.listings}/>
         </div>
       )
@@ -57,7 +56,9 @@ import Navigation from './components/Navigation.jsx';
       return (
         <div>
           <Navigation searched={this.state.searched} />
-          <Search search={this.search} />
+          <div className="mainSearch">
+            <Search className="mainSearch" search={this.search} />
+          </div>
         </div>
       );
     }

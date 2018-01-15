@@ -41,3 +41,39 @@
 .listingDiv h5 {
   margin-top: 0px;
 }
+
+.nav {
+  margin: 15px;
+}
+
+.navLogo {
+  margin: -29px;
+}
+
+.navButton {
+  position: flex;
+  float: right;
+  margin-top: -10px;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.mainSearch {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+}
+
+.navSearch {
+  width: 320px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+
+
+
+
+
