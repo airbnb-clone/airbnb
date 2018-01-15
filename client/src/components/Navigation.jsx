@@ -29,7 +29,7 @@ export default class Navigation extends React.Component {
       <div>
         <Navbar color="faded" light expand="ml">
           <NavbarBrand href="/">Airbnb Logo</NavbarBrand>
-          {this.props.searched ? <Search search={this.props.search} /> : null}
+          
           <Nav className="ml-auto" >
             <NavItem>
               <NavLink href="#">Saved</NavLink>
