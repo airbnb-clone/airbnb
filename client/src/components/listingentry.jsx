@@ -12,9 +12,12 @@ export default class ListingEntry extends React.Component {
   render() {
     return (
       <div className="listingDiv">
-        <img className="listingImage" src={this.props.listing.pic_url} />
-        <h5> {this.props.listing.name}</h5>
-        <Link to={`/listings/${this.props.listing.city}/${this.props.listing.id}`}> <button className="button">See More </button> </Link>
+        <Link to={`/listings/${this.props.listing.city}/${this.props.listing.id}`}>
+          <img className="listingImage" src={this.props.listing.pic_url} />
+        </Link>
+        <Link to={`/listings/${this.props.listing.city}/${this.props.listing.id}`}>
+          <h5> {this.props.listing.name}</h5>
+        </Link>
       </div>
     )
   }
