@@ -12,7 +12,7 @@ export default class ListingEntryDetails extends React.Component {
     super(props);
 
     this.state = {
-      listingId: /* this.props.match.params.id || */ this.props.id,
+      listingId:  this.props.match.params.id ||  this.props.id,
       latLong: null, // should be this format {lat: 42.2828747, lng: -71.13467840000001}
       listing: null,
       mapVis: true, // to prevent map from rendering if no latLong
@@ -23,8 +23,7 @@ export default class ListingEntryDetails extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllDetails(5);
-    //this.getAllDetails(this.props.match.params.id);
+    this.getAllDetails(this.props.match.params.id);
   }
 
   getAllDetails(listingId) {

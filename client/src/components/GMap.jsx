@@ -35,8 +35,7 @@ export default class GMap extends React.Component {
             zoomControl: false,
             rotateControl: false,
             fullscreenControl: false
-          }}
-          >
+          }} disableDefaultUI>
           <MapContainer 
             latLong={this.state.latLong}
           />
