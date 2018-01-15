@@ -47,7 +47,7 @@ export default class Listings extends React.Component {
     this.waiting = false
     console.log(this)
   }
- 
+
   getInfo(){
     axios.get('/listings-bryce', {params: {
       city: this.state.search
