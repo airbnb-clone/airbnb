@@ -6,13 +6,6 @@ const connection = mysql.createConnection({
   database: 'airbnb'
 });
 
-connection.connect(function (err){
-  if (err) {
-    console.log('Error connecting to database');
-  } else {
-    console.log('Database connected breh!');
-  }
-
-})
+connection.connect(err => err ? console.log('Error connecting to database') : console.log('Database connected!'));
 
 module.exports = connection;

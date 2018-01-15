@@ -151,7 +151,7 @@ export default class BookingWindow extends React.Component {
       <div>
         <div className="containerBooking">
           <h1> ${this.props.price} <span style={{'font-size': 'medium', 'font-weight': '200'}}> per night </span></h1>
-          <h2> Rating: {this.state.rating.map(r => emojify(':star:'))}</h2>
+          <h2> Rating: {this.state.rating.map( r =>emojify(':star:'))}</h2>
           <hr/>
 
           <div className="bookingDatesBox">
@@ -164,7 +164,7 @@ export default class BookingWindow extends React.Component {
             <h2> Number of guests:  
               <select>
                 {this.state.maxGuests.map((entry, index) =>
-                  <option> {index + 1} </option>
+                  <option key={index}> {index + 1} </option>
                 )}
               </select>
             </h2>
