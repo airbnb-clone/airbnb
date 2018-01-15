@@ -8,14 +8,33 @@ export default class Listings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: this.props.list || []
+      list: this.props.list || [],
+      search: this.props.match.params.city,
     }
+    this.waiting = true
+  }
+
+
+  componentWillReceiveProps(Nextprops){
+    if(this.waiting){
+    this.setState({
+        search: Nextprops.match.params.city
+    })
+  }
+    console.log(this)
+  }
+
+  componentDidUpdate(){
+    if(this.waiting){
+    this.getInfo()
+  }
   }
 
   componentDidMount() {
-
-    if(this.state.list.length === 0) {
-      axios.get('/listings-ted')
+    if(this.state.list.length === 0 && this.waiting) {
+      axios.get('/listings-bryce', {params: {
+        city: this.state.search
+      }})
       .then(response => {
         this.setState({list: response.data});
 
@@ -24,8 +43,25 @@ export default class Listings extends React.Component {
     }
   }
 
+  componentWillUnmount(){
+    this.waiting = false
+    console.log(this)
+  }
+ 
+  getInfo(){
+    axios.get('/listings-bryce', {params: {
+      city: this.state.search
+    }})
+    .then(response => {
+      this.setState({list: response.data});
+
+    })
+    .catch(error => console.log(error))
+  }
+
+
   render() {
-    if (!this.state.list.length >0) {
+    if (!this.state.list.length >0 ) {
       return null;
     } else {
       return (

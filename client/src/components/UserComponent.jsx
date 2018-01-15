@@ -28,7 +28,8 @@ class UserComponent extends React.Component {
       this.setState({
         currentBookings: sortedData[0],
         pastBookings: sortedData[1],
-        currentIndex: 0
+        currentIndex: 0,
+        modalOpen: !this.state.modalOpen
       })
     }.bind(this))
   }

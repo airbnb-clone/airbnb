@@ -1,6 +1,5 @@
 import React from 'react';
-
-const Marker = ({ text }) => (
+var Marker = ({ text }) => (
   <div style={{
     position: 'fixed',
     width: 100,
@@ -13,8 +12,7 @@ const Marker = ({ text }) => (
     fontSize: 16,
     fontWeight: 'bold',
     padding: 4  
-    }}>
-    
+    }}>  
   </div>
 );
 
