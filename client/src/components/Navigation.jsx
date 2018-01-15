@@ -19,7 +19,7 @@ export default class Navigation extends React.Component {
               <a className="navButton" href="#">Saved</a>
             </NavItem>
             <NavItem>
-              <a className="navButton" href="#">Trips</a>
+              <a className="navButton" href="/bookings">Trips</a>
             </NavItem>
           </Nav>
         </Navbar>
@@ -27,3 +27,9 @@ export default class Navigation extends React.Component {
     );
   }
 }
+
+/*
+
+<Link to="/bookings"><button>button</button></Link>
+
+*/
