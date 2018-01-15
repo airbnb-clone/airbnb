@@ -20,6 +20,8 @@ import Navigation from './components/Navigation.jsx';
       searched: false
     }
     this.search = this.search.bind(this);
+    this.goHome = this.goHome.bind(this);
+    this.goToTrips = this.goToTrips.bind(this);
   }
 
   search(city) {
@@ -37,46 +39,23 @@ import Navigation from './components/Navigation.jsx';
     .catch(error => console.log(error))
   }
 
-  // render() {
-  //   return (
-  //     <div>
-  //       <Search search={this.search} />
-  //       <Link to="/bookings"><button>button</button></Link>
-  //     </div>
-  //   )
   goHome() {
     this.setState({listings: [], searched: false});
-    //this.forceUpdate();
+  }
+
+  goToTrips() {
+    this.setState({searched: true});
   }
 
   render() {
-// <<<<<<< HEAD
-//     if (this.state.listings.length > 0) {
-//       return (
-//         <div>
-//           <Navigation searched={this.state.searched} goHome={this.goHome}/>
-//           <Listings list={this.state.listings}/>
-//         </div>
-//       )
-//     } else {
-//       return (
-//         <div>
-//           <Navigation searched={this.state.searched} />
-//           <div className="mainSearch">
-//             <Search search={this.search} />
-//           </div>
-//         </div>
-//       );
-//     }
-// =======
     return(
       <div>
-        <Navigation searched={this.state.searched} search={this.search}/>
+        <div className="nav">
+          <Navigation searched={this.state.searched} search={this.search} goHome={this.goHome} goToTrips={this.goToTrips}/>
+        </div>
         {this.state.searched ? null : <div className="mainSearch"><Search search={this.search}/></div>}
-        <Link to="/bookings"><button>button</button></Link>
       </div>
-    )
-// >>>>>>> 637ad4044ea7c0b43c50107dbd31542d4b56494e
+    );
   }
 }
 
