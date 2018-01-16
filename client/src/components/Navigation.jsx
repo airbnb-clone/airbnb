@@ -17,7 +17,7 @@ export default class Navigation extends React.Component {
           <span className="navSearch">
             {this.props.searched ? <Search search={this.props.search}/> : null}
           </span>
-          <Nav className="navButton">
+          <Nav className={this.props.searched ? "navWithSearch" : "navButton"}>
             <NavItem>
               <Link to="/bookings" onClick={this.props.goToTrips}>Trips</Link>
             </NavItem>
