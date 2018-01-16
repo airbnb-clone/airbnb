@@ -7,12 +7,11 @@
   cursor: pointer;
   font-size: 12px;
   font-weight: bold;
-
 }
 
 .containerBooking {
   text-align: center;
-	border: solid grey 2px;
+	border: solid lightgrey 1px;
 	border-radius: 25px 0px 25px 0px;
 	padding: 5px;
   width: 350px;
@@ -41,6 +40,7 @@
 .listingDiv h5 {
   margin-top: 0px;
 }
+
 .mainSearch {
   position: absolute;
   top: 50%;
@@ -65,8 +65,12 @@ form {
   margin-top: -55px;
 }
 
-
-
-
-
-
+.listgroup-container {
+  display: flex;
+}
+.listgroup-info {
+  flex: 0 0 65%;
+}
+.listgroup-bookingwindow {
+  flex: 1;
+}

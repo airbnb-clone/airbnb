@@ -3,7 +3,7 @@ import API from './../../../api/env.js';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker.jsx';
 
-const Container = ({ latLong }) => <div><Marker /></div>;
+const MapContainer = ({ latLong }) => <div><Marker /></div>;
 
 export default class GMap extends React.Component {
   constructor(props) {
@@ -14,8 +14,8 @@ export default class GMap extends React.Component {
       zoom: 15,
       apiKey: API.GMapKey,
       style: {
-      width: '50vw',
-      height: '50vh'
+      width: '100vw',
+      height: '60vh',
       }
     }
   }
@@ -26,8 +26,17 @@ export default class GMap extends React.Component {
         <GoogleMapReact
           bootstrapURLKeys={ {key: this.state.apiKey} } 
           defaultCenter={ this.state.latLong }
-          defaultZoom={ this.state.zoom }>
-          <Container 
+          defaultZoom={ this.state.zoom }
+          defaultOptions={{
+            streetViewControl: false,
+            scaleControl: false,
+            mapTypeControl: false,
+            panControl: false,
+            zoomControl: false,
+            rotateControl: false,
+            fullscreenControl: false
+          }} disableDefaultUI>
+          <MapContainer 
             latLong={this.state.latLong}
           />
         </GoogleMapReact>
