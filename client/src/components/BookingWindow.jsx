@@ -17,7 +17,7 @@ export default class BookingWindow extends React.Component {
       modalOpen: false,
       listingId: this.props.listingId,
       userId: 1, // only one user for demo - hardcoded
-      rating: Array(this.props.rating || 3).fill('*'),
+      rating: Array(this.props.rating).fill('*'),
       startDate: undefined,
       endDate: undefined,
       maxGuests: Array(parseInt(this.props.maxGuests)).fill('1'),
