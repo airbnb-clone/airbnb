@@ -116,7 +116,7 @@ export default class ListingEntryDetails extends React.Component {
         </div>
 
         <img src={this.state.pic_url} />
-        <GMap latLong={this.state.latLong} />
+     
       </div> 
       );
     }
